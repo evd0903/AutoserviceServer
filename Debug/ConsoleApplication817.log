@@ -1,0 +1,48 @@
+﻿  server.cpp
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\sqlite_modern_cpp-dev\hdr\sqlite_modern_cpp\type_wrapper.h(132,41): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\sqlite_modern_cpp-dev\hdr\sqlite_modern_cpp\type_wrapper.h(136,36): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(8,25): error C2664: "void DataBaseManager::AddDetail(const Detail &&)": невозможно преобразовать аргумент 1 из "Detail *" в "const Detail &&"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(8,40): message : Причина: невозможно преобразовать "Detail *" в "const Detail"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(8,40): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\database_manager.h(27,7): message : см. объявление "DataBaseManager::AddDetail"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(8,25): message : при попытке сопоставить список аргументов "(Detail *)"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(12,25): error C2664: "void DataBaseManager::AddEmployee(const Employee &&)": невозможно преобразовать аргумент 1 из "Employee *" в "const Employee &&"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(12,42): message : Причина: невозможно преобразовать "Employee *" в "const Employee"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(12,42): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\database_manager.h(29,7): message : см. объявление "DataBaseManager::AddEmployee"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(12,25): message : при попытке сопоставить список аргументов "(Employee *)"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(16,25): error C2664: "void DataBaseManager::AddClient(const Client &&)": невозможно преобразовать аргумент 1 из "Client *" в "const Client &&"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(16,40): message : Причина: невозможно преобразовать "Client *" в "const Client"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(16,40): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\database_manager.h(31,7): message : см. объявление "DataBaseManager::AddClient"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(16,25): message : при попытке сопоставить список аргументов "(Client *)"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(20,25): error C2664: "void DataBaseManager::AddVehicle(const Vehicle &&)": невозможно преобразовать аргумент 1 из "Vehicle *" в "const Vehicle &&"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(20,41): message : Причина: невозможно преобразовать "Vehicle *" в "const Vehicle"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(20,41): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\database_manager.h(33,7): message : см. объявление "DataBaseManager::AddVehicle"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(20,25): message : при попытке сопоставить список аргументов "(Vehicle *)"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(24,25): error C2664: "void DataBaseManager::AddSale(const Sale &&)": невозможно преобразовать аргумент 1 из "Sale *" в "const Sale &&"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(24,38): message : Причина: невозможно преобразовать "Sale *" в "const Sale"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(24,38): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\database_manager.h(35,7): message : см. объявление "DataBaseManager::AddSale"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(24,25): message : при попытке сопоставить список аргументов "(Sale *)"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(32,31): error C2440: =: невозможно преобразовать "Detail" в "Detail *"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(32,31): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(40,35): error C2440: =: невозможно преобразовать "Employee" в "Employee *"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(40,35): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(48,31): error C2440: =: невозможно преобразовать "Client" в "Client *"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(48,31): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(56,33): error C2440: =: невозможно преобразовать "Vehicle" в "Vehicle *"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(56,33): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(64,27): error C2440: =: невозможно преобразовать "Sale" в "Sale *"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(64,27): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(70,9): error C2440: return: невозможно преобразовать "Detail *" в "std::optional<Detail>"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(70,9): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(79,9): error C2440: return: невозможно преобразовать "Employee *" в "std::optional<Employee>"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(79,9): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(88,9): error C2440: return: невозможно преобразовать "Vehicle *" в "std::optional<Vehicle>"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(88,9): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(97,9): error C2440: return: невозможно преобразовать "Client *" в "std::optional<Client>"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(97,9): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(106,9): error C2440: return: невозможно преобразовать "Sale *" в "std::optional<Sale>"
+C:\Users\User\source\repos\Autoservice server\ConsoleApplication817\server.cpp(106,9): message : Ни один конструктор не смог принять исходный тип, либо разрешение перегрузки конструктора неоднозначно
