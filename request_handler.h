@@ -1,6 +1,6 @@
 #pragma once
 
-#include "json.h"
+#include "json_builder.h"
 #include "server.h"
 
 class RequestHandler {
@@ -22,20 +22,15 @@ public:
 
 	void AddSale(const Sale sale);
 
-	template <typename DetailPredicate>
-	std::optional<json::Array> FindDetails(DetailPredicate detail_predicate);
+	std::optional<json::Array> FindDetails(DetailToFind entity);
 
-	template <typename EmployeePredicate>
-	std::optional<json::Array> FindEmployees(EmployeePredicate employee_predicate);
+	std::optional<json::Array> FindEmployees(EmployeeToFind entity);
 
-	template <typename ClientPredicate>
-	std::optional<json::Array> FindClients(ClientPredicate client_predicate);
+	std::optional<json::Array> FindClients(ClientToFind entity);
 
-	template <typename VehiclePredicate>
-	std::optional<json::Array> FindVehicles(VehiclePredicate client_predicate);
+	std::optional<json::Array> FindVehicles(VehicleToFind entity);
 
-	template <typename SalePredicate>
-	std::optional<json::Array> FindSales(SalePredicate sale_predicate);
+	std::optional<json::Array> FindSales(SaleToFind entity);
 
 	double ComputeIncome(int month_number);
 

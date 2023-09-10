@@ -1,22 +1,37 @@
 ﻿#include <iostream>
 #include <string>
 
-#include "database_manager.h"
+#include "server.h"
 
 using namespace std;
 
 int main()
 {
+	string db_name = "MyDB.db";
+
+	Server server(db_name);
+
+	DetailToFind d;
+
+	d.name = "Tormoza10";
+
+
+	auto ans1 = *server.FindDetails(d);
+
+	for (auto ans : ans1) {
+		cout << ans.name << " " << ans.count << " " << ans.code << " " << ans.buy_price << " " << ans.sale_price;
+	}
+
 	
-	DataBaseManager dbm("MyDB.db");
-	Detail detail;
+	//DataBaseManager dbm("MyDB.db");
+	/*Detail detail;
 	detail.name = "Tormoza10";
 	detail.count = 10;
 	detail.code = "41151551";
 	detail.buy_price = 10000;
 	detail.sale_price = 12500;
 
-	dbm.AddDetail(move(detail));
+	dbm.AddDetail(move(detail));*/
 
 	//Detail ans = *dbm.FindDetailById(14);
 
