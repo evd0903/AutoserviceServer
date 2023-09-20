@@ -5,6 +5,8 @@
 
 #include <string>
 #include <vector>
+#include <optional>
+
 
 using namespace sqlite;
 
@@ -34,6 +36,26 @@ public:
 
 	void AddSale(const Sale&& sale);
 
+	void DeleteDetail(int id);
+
+	void DeleteEmployee(int id);
+
+	void DeleteClient(int id);
+
+	void DeleteVehicle(int id);
+
+	void DeleteSale(int id);
+
+	void UpdateDetail(int id, DetailToQuery detail);
+
+	void UpdateEmployee(int id, EmployeeToQuery employee);
+
+	void UpdateClient(int id, ClientToQuery client);
+
+	void UpdateVehicle(int id, VehicleToQuery vehicle);
+
+	void UpdateSale(int id, SaleToQuery sale);
+
 	int GetLastId(EntityType entity_type);
 
 	void UpdateLastId(EntityType entity_type);
@@ -48,13 +70,15 @@ public:
 
 	std::optional<Sale> FindSaleById(int id);
 
+	double ComputeIncome(std::string start_date, std::string end_date);
+
 	template <typename Entity>
 	std::optional<std::vector<Entity>> ExecuteCustomQuery(const std::string& query) {
 
 		std::vector<Entity> result;
 
 		auto prep = db_ << query;
-		
+
 		for (auto&& row : prep) {
 			result.push_back(Entity::FromRow(row));
 		}
@@ -62,6 +86,8 @@ public:
 		if (result.size()) {
 			return result;
 		}
+
+		return std::nullopt;
 	}
 
 private:

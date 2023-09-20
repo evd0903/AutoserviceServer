@@ -5,6 +5,61 @@
 #include <chrono>
 #include <string>
 
+struct Date {
+	Date() = default;
+
+	Date(const std::string s) {
+		year = std::stoi(s.substr(0, 4));
+
+		int pos = 0;
+
+		for (int i = 5; i != s.size(); ++i) {
+			if (s[i] == '-') {
+				pos = i;
+				break;
+			}
+		}
+
+		month = std::stoi(s.substr(5, pos - 5));
+		day = std::stoi(s.substr(pos + 1));
+	}
+
+	Date(const int d, const int m, const int y)
+		: year(y)
+		, month(m)
+		, day(d)
+	{
+	}
+
+	bool operator==(const Date& other) {
+		return year == other.year && month == other.month && day == other.day;
+	}
+
+	int day;
+	int month;
+	int year;
+
+	std::string AsString() const {
+		std::string s = std::to_string(year) + '-';
+
+		if (month < 10) {
+			s += "0" + std::to_string(month) + "-";
+		}
+		else {
+			s += std::to_string(month) + "-";
+		}
+
+		if (day < 10) {
+			s += "0" + std::to_string(day) + "-";
+		}
+		else {
+			s += std::to_string(day) + "-";
+		}
+
+		return s;
+	}
+};
+
 struct Detail {
 	int id;
 	std::string name;
@@ -69,7 +124,7 @@ struct Vehicle {
 struct Sale {
 	int id;
 	int sale_count;
-	std::string sale_date;
+	Date sale_date;
 	double income;
 	int detail_id;
 	int client_id;
@@ -78,14 +133,17 @@ struct Sale {
 	static Sale FromRow(sqlite::row_iterator::value_type& row) {
 		Sale sale;
 
-		row >> sale.id >> sale.detail_id >> sale.client_id >> sale.vehicle_id >> sale.sale_count >> sale.sale_date >> sale.income;
+		std::string date;
+
+		row >> sale.id >> sale.detail_id >> sale.client_id >> sale.vehicle_id >> sale.sale_count >> date >> sale.income;
+
+		sale.sale_date = Date{ date };
 
 		return sale;
 	}
 };
 
-struct DetailToFind
-{
+struct DetailToQuery {
 	std::optional<int> id;
 	std::optional<std::string> name;
 	std::optional<std::string> code;
@@ -94,31 +152,30 @@ struct DetailToFind
 	std::optional<double> sale_price;
 };
 
-struct EmployeeToFind
-{
+struct EmployeeToQuery {
 	std::optional<int> id;
 	std::optional<std::string> name;
 	std::optional<std::string> role;
 	std::optional<double> salary;
 };
 
-struct ClientToFind {
+struct ClientToQuery {
 	std::optional<int> id;
 	std::optional<std::string> name;
 	std::optional<std::string> INN;
 };
 
-struct VehicleToFind {
+struct VehicleToQuery {
 	std::optional<int> id;
 	std::optional<std::string> name;
 	std::optional<std::string> code;
 	std::optional<int> client_id;
 };
 
-struct SaleToFind {
+struct SaleToQuery {
 	std::optional<int> id;
 	std::optional<int> sale_count;
-	std::optional<std::string> sale_date;
+	std::optional<Date> sale_date;
 	std::optional<double> income;
 	std::optional<int> detail_id;
 	std::optional<int> client_id;

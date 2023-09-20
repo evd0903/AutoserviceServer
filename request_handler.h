@@ -3,13 +3,14 @@
 #include "json_builder.h"
 #include "server.h"
 
+
 class RequestHandler {
 public:
 	RequestHandler(Server& server)
 		: server_(server)
 	{
 	}
-	
+
 	std::optional<json::Document> HandleRequest(std::istream& input = std::cin);
 
 	void AddDetail(const Detail detail);
@@ -22,19 +23,38 @@ public:
 
 	void AddSale(const Sale sale);
 
-	std::optional<json::Array> FindDetails(DetailToFind entity);
+	void DeleteDetail(int id);
 
-	std::optional<json::Array> FindEmployees(EmployeeToFind entity);
+	void DeleteEmployee(int id);
 
-	std::optional<json::Array> FindClients(ClientToFind entity);
+	void DeleteClient(int id);
 
-	std::optional<json::Array> FindVehicles(VehicleToFind entity);
+	void DeleteVehicle(int id);
 
-	std::optional<json::Array> FindSales(SaleToFind entity);
+	void DeleteSale(int id);
 
-	double ComputeIncome(int month_number);
+	std::optional<json::Dict> FindDetailById(int id);
+
+	std::optional<json::Dict> FindEmployeeById(int id);
+
+	std::optional<json::Dict> FindVehicleById(int id);
+
+	std::optional<json::Dict> FindClientById(int id);
+
+	std::optional<json::Dict> FindSaleById(int id);
+
+	std::optional<json::Dict> FindDetails(DetailToQuery entity);
+
+	std::optional<json::Dict> FindEmployees(EmployeeToQuery entity);
+
+	std::optional<json::Dict> FindClients(ClientToQuery entity);
+
+	std::optional<json::Dict> FindVehicles(VehicleToQuery entity);
+
+	std::optional<json::Dict> FindSales(SaleToQuery entity);
+
+	double ComputeIncome(std::string start_date, std::string end_date);
 
 private:
 	Server& server_;
 };
-

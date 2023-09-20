@@ -8,12 +8,16 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
+#include <Windows.h>
 
 class Server {
 public:
 	Server(std::string& db_name)
 		: DataBaseManager_(db_name)
 	{
+	};
+
+	~Server() {
 	};
 
 	void SaveCacheToDataBase();
@@ -25,8 +29,30 @@ public:
 	void AddClient(const Client&& client);
 
 	void AddVehicle(const Vehicle&& vehicle);
-	
+
 	void AddSale(const Sale&& sale);
+
+	void NewSale(int detail_id, int sale_count, int client_id, int vehicle_id);
+
+	void DeleteDetail(int id);
+
+	void DeleteEmployee(int id);
+
+	void DeleteClient(int id);
+
+	void DeleteVehicle(int id);
+
+	void DeleteSale(int id);
+
+	void UpdateDetail(int id, DetailToQuery detail);
+
+	void UpdateEmployee(int id, EmployeeToQuery employee);
+
+	void UpdateClient(int id, ClientToQuery client);
+
+	void UpdateVehicle(int id, VehicleToQuery vehicle);
+
+	void UpdateSale(int id, SaleToQuery sale);
 
 	std::optional<Detail> FindDetailById(int id);
 
@@ -38,17 +64,30 @@ public:
 
 	std::optional<Sale> FindSaleById(int id);
 
-	std::optional<std::vector<Detail>> FindDetails(DetailToFind detail);
+	std::optional<std::vector<Detail>> FindDetails(DetailToQuery entity);
 
-	std::optional<std::vector<Employee>> FindEmployees(EmployeeToFind detail);
+	std::optional<std::vector<Employee>> FindEmployees(EmployeeToQuery entity);
 
-	std::optional<std::vector<Client>> FindClients(ClientToFind detail);
+	std::optional<std::vector<Client>> FindClients(ClientToQuery entity);
 
-	std::optional<std::vector<Vehicle>> FindVehicles(VehicleToFind detail);
+	std::optional<std::vector<Vehicle>> FindVehicles(VehicleToQuery entity);
 
-	std::optional<std::vector<Sale>> FindSales(SaleToFind detail);
+	std::optional<std::vector<Sale>> FindSales(SaleToQuery entity);
 
-private: 
+	double ComputeIncome(std::string start_date, std::string end_date);
+
+private:
+	bool CheckDetailId(int id);
+
+	bool CheckEmployeeId(int id);
+
+	bool CheckClientId(int id);
+
+	bool CheckVehicleId(int id);
+
+	bool CheckSaleId(int id);
+
+private:
 	std::vector<Detail> details_;
 	std::vector<Employee> employees_;
 	std::vector<Client> clients_;

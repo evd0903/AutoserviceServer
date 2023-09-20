@@ -1,17 +1,49 @@
 ﻿#include <iostream>
 #include <string>
 
-#include "server.h"
+#include "request_handler.h"
 
 using namespace std;
 
 int main()
 {
 	string db_name = "MyDB.db";
-
 	Server server(db_name);
+	
 
-	DetailToFind d;
+	DetailToQuery detail;
+	detail.buy_price = 8000;
+
+
+	try {
+		server.UpdateDetail(16, detail);
+
+	}
+	catch (const exception& e) {
+		cerr << e.what() << endl;
+	}
+	/*Server server(db_name);
+
+	RequestHandler rq(server);
+
+
+	try {
+		for (int i = 0; i != 2; ++i) {
+			auto ans = rq.HandleRequest();
+
+			json::Print(*ans, cout);
+		}
+	}
+	catch (const exception& e) {
+		cerr << e.what();
+	}*/
+	/*try {
+		server.DeleteDetail(14);
+	}
+	catch (exception& e) {
+		cerr << e.what() << endl;
+	}*/
+	/*DetailToFind d;
 
 	d.name = "Tormoza10";
 
@@ -20,14 +52,14 @@ int main()
 
 	for (auto ans : ans1) {
 		cout << ans.name << " " << ans.count << " " << ans.code << " " << ans.buy_price << " " << ans.sale_price;
-	}
+	}*/
 
 	
-	//DataBaseManager dbm("MyDB.db");
-	/*Detail detail;
+	/*DataBaseManager dbm("MyDB.db");
+	Detail detail;
 	detail.name = "Tormoza10";
-	detail.count = 10;
-	detail.code = "41151551";
+	detail.count = 4;
+	detail.code = "41151553";
 	detail.buy_price = 10000;
 	detail.sale_price = 12500;
 
