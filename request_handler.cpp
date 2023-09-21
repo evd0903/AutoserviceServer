@@ -82,6 +82,155 @@ std::optional<json::Document> RequestHandler::HandleRequest(std::istream& input)
 				cerr << e.what() << endl;
 			}
 		}
+		else if (requestType == "delete_detail") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int detail_id = request.at("id").AsInt();
+
+			server_.DeleteDetail(detail_id);
+		}
+		else if (requestType == "delete_employee") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int employee_id = request.at("id").AsInt();
+
+			server_.DeleteEmployee(employee_id);
+		}
+		else if (requestType == "delete_client") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int client_id = request.at("id").AsInt();
+
+			server_.DeleteClient(client_id);
+		}
+		else if (requestType == "delete_vehicle") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int vehicle_id = request.at("id").AsInt();
+
+			server_.DeleteVehicle(vehicle_id);
+		}
+		else if (requestType == "delete_sale") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int sale_id = request.at("id").AsInt();
+
+			server_.DeleteSale(sale_id);
+		}
+		else if (requestType == "update_detail") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int id = request.at("id").AsInt();
+
+			DetailToQuery detail;
+
+			for (auto [key, item] : request) {
+				if (key == "name") {
+					detail.name = item.AsString();
+				}
+				else if (key == "count") {
+					detail.count = item.AsInt();
+				}
+				else if (key == "code") {
+					detail.code = item.AsString();
+				}
+				else if (key == "buy_price") {
+					detail.buy_price = item.AsDouble();
+				}
+				else if (key == "sale_price") {
+					detail.sale_price = item.AsDouble();
+				}
+			}
+
+			server_.UpdateDetail(id, detail);
+		}
+		else if (requestType == "update_employee") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int id = request.at("id").AsInt();
+
+			EmployeeToQuery employee;
+
+			for (auto [key, item] : request) {
+				if (key == "name") {
+					employee.name = item.AsString();
+				}
+				else if (key == "role") {
+					employee.role = item.AsString();
+				}
+				else if (key == "salary") {
+					employee.salary = item.AsDouble();
+				}
+			}
+
+			server_.UpdateEmployee(id, employee);
+		}
+		else if (requestType == "update_client") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int id = request.at("id").AsInt();
+
+			ClientToQuery client;
+
+			for (auto [key, item] : request) {
+				if (key == "name") {
+					client.name = item.AsString();
+				}
+				else if (key == "INN") {
+					client.INN = item.AsString();
+				}
+			}
+
+			server_.UpdateClient(id, client);
+		}
+		else if (requestType == "update_vehicle") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int id = request.at("id").AsInt();
+
+			VehicleToQuery vehicle;
+
+			for (auto [key, item] : request) {
+				if (key == "name") {
+					vehicle.name = item.AsString();
+				}
+				else if (key == "code") {
+					vehicle.code = item.AsString();
+				}
+			}
+
+			server_.UpdateVehicle(id,vehicle);
+		}
+		else if (requestType == "update_sale") {
+			json::Dict request = full_request.GetRoot().AsDict().at("request").AsDict();
+
+			int id = request.at("id").AsInt();
+
+			SaleToQuery sale;
+
+			for (auto [key, item] : request) {
+				if (key == "sale_count") {
+					sale.sale_count = item.AsInt();
+				}
+				else if (key == "sale_date") {
+					sale.sale_date = item.AsString();
+				}
+				else if (key == "income") {
+					sale.income = item.AsDouble();
+				}
+				else if (key == "detail_id") {
+					sale.detail_id = item.AsInt();
+				}
+				else if (key == "client_id") {
+					sale.client_id = item.AsInt();
+				}
+				else if (key == "vehicle_id") {
+					sale.vehicle_id = item.AsInt();
+				}
+			}
+
+			server_.UpdateSale(id, sale);
+		}
 		else if (requestType == "find_detail_by_id") {
 			int id = full_request.GetRoot().AsDict().at("request").AsDict().at("id").AsInt();
 
@@ -441,6 +590,8 @@ std::optional<json::Dict> RequestHandler::FindDetails(DetailToQuery entity) {
 
 		return ans;
 	}
+
+	return nullopt;
 }
 
 std::optional<json::Dict> RequestHandler::FindEmployees(EmployeeToQuery entity) {
@@ -469,6 +620,8 @@ std::optional<json::Dict> RequestHandler::FindEmployees(EmployeeToQuery entity) 
 
 		return ans;
 	}
+
+	return nullopt;
 }
 
 std::optional<json::Dict> RequestHandler::FindClients(ClientToQuery entity) {
@@ -497,6 +650,8 @@ std::optional<json::Dict> RequestHandler::FindClients(ClientToQuery entity) {
 
 		return ans;
 	}
+
+	return nullopt;
 }
 
 std::optional<json::Dict> RequestHandler::FindVehicles(VehicleToQuery entity) {
@@ -525,6 +680,8 @@ std::optional<json::Dict> RequestHandler::FindVehicles(VehicleToQuery entity) {
 
 		return ans;
 	}
+
+	return nullopt;
 }
 
 std::optional<json::Dict> RequestHandler::FindSales(SaleToQuery entity) {
@@ -553,8 +710,10 @@ std::optional<json::Dict> RequestHandler::FindSales(SaleToQuery entity) {
 
 		return ans;
 	}
+
+	return nullopt;
 }
 
 double RequestHandler::ComputeIncome(std::string start_date, std::string end_date) {
-	return 0.0;
+	return server_.ComputeIncome(start_date, end_date);
 }

@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 	string db_name = "MyDB.db";
-	Server server(db_name);
+	/*Server server(db_name);
 	
 
 	DetailToQuery detail;
@@ -21,8 +21,8 @@ int main()
 	}
 	catch (const exception& e) {
 		cerr << e.what() << endl;
-	}
-	/*Server server(db_name);
+	}*/
+	Server server(db_name);
 
 	RequestHandler rq(server);
 
@@ -36,7 +36,7 @@ int main()
 	}
 	catch (const exception& e) {
 		cerr << e.what();
-	}*/
+	}
 	/*try {
 		server.DeleteDetail(14);
 	}

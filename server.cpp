@@ -170,20 +170,38 @@ void Server::UpdateDetail(int id, DetailToQuery detail) {
 	DataBaseManager_.UpdateDetail(id, detail);
 }
 
-void Server::UpdateEmployee(int id, EmployeeToQuery employee)
-{
+void Server::UpdateEmployee(int id, EmployeeToQuery employee) {
+	if (!CheckEmployeeId(id)) {
+		throw exception("DB doesn't has this id!");
+	}
+
+	DataBaseManager_.UpdateEmployee(id, employee);
+
 }
 
-void Server::UpdateClient(int id, ClientToQuery client)
-{
+void Server::UpdateClient(int id, ClientToQuery client) {
+	if (!CheckClientId(id)) {
+		throw exception("DB doesn't has this id!");
+	}
+
+	DataBaseManager_.UpdateClient(id, client);
+
 }
 
-void Server::UpdateVehicle(int id, VehicleToQuery vehicle)
-{
+void Server::UpdateVehicle(int id, VehicleToQuery vehicle) {
+	if (!CheckVehicleId(id)) {
+		throw exception("DB doesn't has this id!");
+	}
+
+	DataBaseManager_.UpdateVehicle(id, vehicle);
 }
 
-void Server::UpdateSale(int id, SaleToQuery sale)
-{
+void Server::UpdateSale(int id, SaleToQuery sale) {
+	if (!CheckSaleId(id)) {
+		throw exception("DB doesn't has this id!");
+	}
+
+	DataBaseManager_.UpdateSale(id, sale);
 }
 
 std::optional<Detail> Server::FindDetailById(int id) {
